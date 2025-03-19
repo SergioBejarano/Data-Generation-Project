@@ -7,3 +7,10 @@ This project generates pseudorandom company data, focusing on numerical data and
 - Python 3.8+
 - Dependencies: `pandas`, `numpy`, `Faker`, `openai`, `pytest`
 
+
+##  Generating data
+```sh
+python -m scripts.generateCompanies
+
+```
+
