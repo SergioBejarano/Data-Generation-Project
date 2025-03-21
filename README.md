@@ -78,6 +78,15 @@ python -m scripts.generateCompanies
 
 ```
 
+##  Generating graphic
+```sh
+python -m scripts.plotPerformance
+
+```
+![image](https://github.com/user-attachments/assets/da806cf4-e577-4766-9bd0-9103916e23cd)
+
+![image](https://github.com/user-attachments/assets/f7fa9404-6d8e-40d5-92b9-743548430886)
+
 
 ## Algorithm Complexity
 
