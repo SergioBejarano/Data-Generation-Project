@@ -1,4 +1,5 @@
 import time
+import numpy as np
 import matplotlib.pyplot as plt
 from companyGenerator.dataGenerator import CompanyDataGenerator
 
@@ -11,8 +12,8 @@ def measure_execution_time(row_count):
     return end_time - start_time
 
 def plot_performance():
-    """Plot the execution time for different row counts."""
-    row_counts = [100 * i for i in range(1, 21)]
+    """Plot the execution time for different row counts with a linear trendline."""
+    row_counts = [1000 * i for i in range(1, 21)]
     execution_times = []
 
     for count in row_counts:
@@ -21,15 +22,23 @@ def plot_performance():
         execution_times.append(execution_time)
         print(f"Time taken: {execution_time:.4f} seconds")
 
+    row_counts_np = np.array(row_counts)
+    execution_times_np = np.array(execution_times)
+
+    slope, intercept = np.polyfit(row_counts_np, execution_times_np, 1)
+    trendline = slope * row_counts_np + intercept
+
     plt.figure(figsize=(10, 6))
-    plt.plot(row_counts, execution_times, marker="o", linestyle="-", color="b")
+    plt.plot(row_counts, execution_times, marker="o", linestyle="-", color="b", label="Execution Time")
+    plt.plot(row_counts, trendline, linestyle="--", color="r", label="Linear Trendline")
     plt.title("Execution Time vs. Number of Rows")
     plt.xlabel("Number of Rows")
     plt.ylabel("Execution Time (seconds)")
     plt.grid(True)
+    plt.legend()
 
-    plt.savefig("plots/performance_plot.png")
-    print("Plot saved to 'plots/performance_plot.png'")
+    plt.savefig("plots/performance_plot_with_trendline.png")
+    print("Plot saved to 'plots/performance_plot_with_trendline.png'")
 
 if __name__ == "__main__":
     plot_performance()
