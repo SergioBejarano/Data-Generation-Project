@@ -77,3 +77,30 @@ coverage report -m
 python -m scripts.generateCompanies
 
 ```
+
+
+## Algorithm Complexity
+
+### Total Complexity
+
+1. **Initialization of qualitative lists**: \( O(1) \).
+2. **Data generation for each column**: \( O(n) \) for each column.
+   - Since there are 30 columns, the total complexity is \( O(30n) = O(n) \).
+3. **Creation of the DataFrame**: \( O(n \cdot m) = O(30n) = O(n) \).
+
+Thus, the **total complexity of the algorithm** is:
+
+\[
+O(1) + O(n) + O(n) = O(n)
+\]
+
+---
+
+### Conclusion
+
+- The algorithm complexity is **linear** (\( O(n) \)) concerning the number of rows (`row_count`).
+- This means that execution time **increases proportionally** with the input size (`row_count`).
+- The algorithm is **efficient** for generating large volumes of data since it **does not** include quadratic or exponential operations.
+
+
+
