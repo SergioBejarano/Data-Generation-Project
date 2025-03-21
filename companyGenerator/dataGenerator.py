@@ -9,11 +9,11 @@ class CompanyDataGenerator:
 
     def generate_data(self):
         # Qualitative data (lists of at least 10 values)
-        company_names = [self.fake.company() for _ in range(10)]
+        company_names = [self.fake.company() for _ in range(self.row_count)]
         company_types = ["S.A.", "S.R.L.", "Startup", "Cooperative", "Corporation", "LLC", "Partnership", "Non-Profit", "Public Company", "Private Company"]
         industries = ["Technology", "Finance", "Healthcare", "Manufacturing", "Retail", "Education", "Energy", "Telecommunications", "Transportation", "Real Estate"]
-        countries = ["United States", "Colombia", "Germany", "Canada", "Brazil", "France", "Japan", "Australia", "India", "China"]
-        cities = ["New York", "Bogota", "Berlin", "Toronto", "Sao Paulo", "Paris", "Tokyo", "Sydney", "Mumbai", "Shanghai"]
+        countries = [self.fake.country() for _ in range(self.row_count)]
+        cities = [self.fake.city() for _ in range(self.row_count)]
         product_lines = ["Software", "Electronics", "Healthcare Devices", "Financial Services", "Consumer Goods", "Automobiles", "Energy Solutions", "Telecom Services", "Education Tools", "Real Estate Services"]
         benefit_policies = ["Health Insurance", "Remote Work", "Stock Options", "Retirement Plans", "Tuition Reimbursement", "Parental Leave", "Wellness Programs", "Flexible Hours", "Bonuses", "Professional Development"]
 
