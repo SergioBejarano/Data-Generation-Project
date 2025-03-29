@@ -2,6 +2,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 from companyGenerator.dataGenerator import CompanyDataGenerator
+import argparse
 
 def measure_execution_time(row_count):
     """Measure the time it takes to generate data for a given row_count."""
@@ -13,7 +14,12 @@ def measure_execution_time(row_count):
 
 def plot_performance():
     """Plot the execution time for different row counts with a linear trendline."""
-    row_counts = [1000 * i for i in range(1, 21)]
+    parser = argparse.ArgumentParser(description='Performance measurement for data generation')
+    parser.add_argument('--base', type=int, default=1000,
+                        help='Base value for row counts (default: 1000)')
+    args = parser.parse_args()
+
+    row_counts = [args.base * i for i in range(1, 21)]
     execution_times = []
 
     for count in row_counts:
