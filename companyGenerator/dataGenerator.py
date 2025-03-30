@@ -46,7 +46,7 @@ class CompanyDataGenerator:
             "Percentage of Revenue from Recurring Customers": np.random.uniform(40, 95, self.row_count).round(2),
 
             # Modified to use pie chart distribution (45%, 35%, 25%, 15%, 10%, 5%)
-            "Number of Cloud Servers": self._generate_pie_distribution(self.row_count),
+            "Number of Cloud Servers": self._generate_pie_distribution(),
 
             "Number of Physical Offices": np.random.randint(1, 300, self.row_count),
             "Automation Level (%)": np.random.uniform(10, 95, self.row_count).round(2),
@@ -59,16 +59,23 @@ class CompanyDataGenerator:
         }
         return pd.DataFrame(data)
 
-    def _generate_pie_distribution(self, size):
+    def _generate_pie_distribution(self):
         """Generate data with an automatic mathematical distribution for pie chart"""
-        num_values = 20
-        base = 10
+        num_values = 12
+        base = 5
         ratio = 2
         values = np.array([base * (ratio ** i) for i in range(num_values)])
         decay_factor = 0.7
         probabilities = np.exp(-decay_factor * np.arange(num_values))
         probabilities /= probabilities.sum()
-        return np.random.choice(values, size=size, p=probabilities)
+        counts = np.round(probabilities * self.row_count).astype(int)
+        difference = self.row_count - counts.sum()
+        if difference > 0:
+            counts[np.argmax(counts)] += difference
+        elif difference < 0:
+            counts[np.argmax(counts)] -= abs(difference)
+        final_counts = np.repeat(values, counts)
+        return final_counts.tolist()
 
     def _generate_exponential_employees(self, offices):
         """Generate employees count with exponential growth based on offices"""
