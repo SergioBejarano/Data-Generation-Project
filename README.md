@@ -74,13 +74,13 @@ coverage report -m
 
 ##  Generating data
 ```sh
-python -m scripts.generateCompanies
+python -m scripts.generateCompanies --row_count
 
 ```
 
 ##  Generating graphic
 ```sh
-python -m scripts.plotPerformance
+python -m scripts.plotPerformance --base
 
 ```
 ![image](https://github.com/user-attachments/assets/da806cf4-e577-4766-9bd0-9103916e23cd)
