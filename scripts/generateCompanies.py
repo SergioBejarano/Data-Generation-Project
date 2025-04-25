@@ -44,8 +44,8 @@ def generate_additional_plots(df):
     plt.savefig('plots/servidores_torta.png', bbox_inches='tight', dpi=120)
     plt.close()
     generate_additional_exp_norm(df)
-
-
+    generate_year_founded_distribution(df)
+    generate_employees_vs_revenue(df)
 
 
 def generate_additional_exp_norm(df):
@@ -54,7 +54,7 @@ def generate_additional_exp_norm(df):
     plt.figure(figsize=(10, 6))
     plt.plot(df_sorted['Number of Offices'],
              df_sorted['Number of Employees'],
-             'b-', linewidth=2)
+             'bo', markersize=1)
     plt.title('Relación Creciente: Empleados vs Oficinas', fontsize=14)
     plt.xlabel('Número de Oficinas', fontsize=12)
     plt.ylabel('Número de Empleados', fontsize=12)
@@ -70,6 +70,33 @@ def generate_additional_exp_norm(df):
     plt.grid(True, linestyle='--', alpha=0.3)
     plt.savefig('plots/distribucion_ingresos.png')
     plt.close()
+
+
+def generate_year_founded_distribution(df):
+    """Generate a plot for Year Founded vs Number of Companies"""
+    plt.figure(figsize=(10, 6))
+    year_counts = df['Year Founded'].value_counts().sort_index()
+    plt.bar(year_counts.index, year_counts.values, color='lightblue', edgecolor='black')
+    plt.title('Distribución del Año de Fundación de Empresas', fontsize=14)
+    plt.xlabel('Año de Fundación', fontsize=12)
+    plt.ylabel('Cantidad de Empresas', fontsize=12)
+    plt.grid(axis='y', linestyle='--', alpha=0.6)
+    plt.savefig('plots/year_founded_distribution.png', dpi=300)
+    plt.close()
+
+
+def generate_employees_vs_revenue(df):
+    """Generate a plot for Number of Employees vs Annual Revenue"""
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df['Number of Employees'], df['Annual Revenue (USD)'],
+                alpha=0.5, color='green', edgecolor='black', s=20)
+    plt.title('Relación entre Empleados y Revenue Anual', fontsize=14)
+    plt.xlabel('Número de Empleados', fontsize=12)
+    plt.ylabel('Revenue Anual (USD)', fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.6)
+    plt.savefig('plots/employees_vs_revenue.png', dpi=300)
+    plt.close()
+
 
 
 if __name__ == "__main__":
